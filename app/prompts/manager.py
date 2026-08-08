@@ -49,8 +49,11 @@ class PromptManager:
 
     @staticmethod
     def build_resume_messages(
-        text: str
+        text: str,
+        history: list | None = None
     ):
+
+        history = history or []
 
         messages = [
             {
@@ -58,6 +61,8 @@ class PromptManager:
                 "content": SYSTEM_PROMPTS["resume"]
             }
         ]
+
+        messages.extend(history)
 
         messages.append(
             {
